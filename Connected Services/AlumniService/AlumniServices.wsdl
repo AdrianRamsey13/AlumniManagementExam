@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="AlumniServices" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:50563/Services/AlumniServices.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:50563/Services/AlumniServices.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:50563/Services/AlumniServices.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/AlumniWCF.DTO" />
+      <xsd:import schemaLocation="http://localhost:50563/Services/AlumniServices.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/AlumniWCF.DBML" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAlumniServices_GetAlumnis_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlumnis" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_GetAlumnis_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlumnisResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_GetAlumniByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlumniByID" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_GetAlumniByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlumniByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_GetAlumniFullName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlumniFullName" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_GetAlumniFullName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlumniFullNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_AddAlumni_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAlumni" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_AddAlumni_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAlumniResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_UpdateAlumni_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAlumni" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_UpdateAlumni_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAlumniResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_DeleteAlumni_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAlumni" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_DeleteAlumni_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAlumniResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_GetDistrictIdByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDistrictIdByName" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_GetDistrictIdByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDistrictIdByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_GetStateIdByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStateIdByName" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_GetStateIdByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStateIdByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_ImportFromExcel_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromExcel" />
+  </wsdl:message>
+  <wsdl:message name="IAlumniServices_ImportFromExcel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromExcelResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAlumniServices">
+    <wsdl:operation name="GetAlumnis">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlumniServices/GetAlumnis" message="tns:IAlumniServices_GetAlumnis_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlumniServices/GetAlumnisResponse" message="tns:IAlumniServices_GetAlumnis_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlumniByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlumniServices/GetAlumniByID" message="tns:IAlumniServices_GetAlumniByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlumniServices/GetAlumniByIDResponse" message="tns:IAlumniServices_GetAlumniByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlumniFullName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlumniServices/GetAlumniFullName" message="tns:IAlumniServices_GetAlumniFullName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlumniServices/GetAlumniFullNameResponse" message="tns:IAlumniServices_GetAlumniFullName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAlumni">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlumniServices/AddAlumni" message="tns:IAlumniServices_AddAlumni_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlumniServices/AddAlumniResponse" message="tns:IAlumniServices_AddAlumni_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAlumni">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlumniServices/UpdateAlumni" message="tns:IAlumniServices_UpdateAlumni_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlumniServices/UpdateAlumniResponse" message="tns:IAlumniServices_UpdateAlumni_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAlumni">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlumniServices/DeleteAlumni" message="tns:IAlumniServices_DeleteAlumni_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlumniServices/DeleteAlumniResponse" message="tns:IAlumniServices_DeleteAlumni_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrictIdByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlumniServices/GetDistrictIdByName" message="tns:IAlumniServices_GetDistrictIdByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlumniServices/GetDistrictIdByNameResponse" message="tns:IAlumniServices_GetDistrictIdByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStateIdByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlumniServices/GetStateIdByName" message="tns:IAlumniServices_GetStateIdByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlumniServices/GetStateIdByNameResponse" message="tns:IAlumniServices_GetStateIdByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportFromExcel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlumniServices/ImportFromExcel" message="tns:IAlumniServices_ImportFromExcel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlumniServices/ImportFromExcelResponse" message="tns:IAlumniServices_ImportFromExcel_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAlumniServices" type="tns:IAlumniServices">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAlumnis">
+      <soap:operation soapAction="http://tempuri.org/IAlumniServices/GetAlumnis" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlumniByID">
+      <soap:operation soapAction="http://tempuri.org/IAlumniServices/GetAlumniByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlumniFullName">
+      <soap:operation soapAction="http://tempuri.org/IAlumniServices/GetAlumniFullName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAlumni">
+      <soap:operation soapAction="http://tempuri.org/IAlumniServices/AddAlumni" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAlumni">
+      <soap:operation soapAction="http://tempuri.org/IAlumniServices/UpdateAlumni" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAlumni">
+      <soap:operation soapAction="http://tempuri.org/IAlumniServices/DeleteAlumni" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrictIdByName">
+      <soap:operation soapAction="http://tempuri.org/IAlumniServices/GetDistrictIdByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStateIdByName">
+      <soap:operation soapAction="http://tempuri.org/IAlumniServices/GetStateIdByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportFromExcel">
+      <soap:operation soapAction="http://tempuri.org/IAlumniServices/ImportFromExcel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AlumniServices">
+    <wsdl:port name="BasicHttpBinding_IAlumniServices" binding="tns:BasicHttpBinding_IAlumniServices">
+      <soap:address location="http://localhost:50563/Services/AlumniServices.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AlumniWCF.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AlumniWCF.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:50563/Services/AlumniServices.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/AlumniWCF.DBML" />
+  <xs:complexType name="ArrayOfAlumniDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AlumniDTO" nillable="true" type="tns:AlumniDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAlumniDTO" nillable="true" type="tns:ArrayOfAlumniDTO" />
+  <xs:complexType name="AlumniDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AlumniID" type="xs:int" />
+      <xs:element minOccurs="0" name="DateOfBirth" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Degree" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DistrictID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DistrictName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/AlumniWCF.DBML" minOccurs="0" name="DistrictsDdl" nillable="true" type="q1:ArrayOfDistrict" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FacultyID" type="xs:int" />
+      <xs:element minOccurs="0" name="FacultyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GraduationYear" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LinkedInProfile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MajorID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="MajorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MobileNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StateID" type="xs:int" />
+      <xs:element minOccurs="0" name="StateName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/AlumniWCF.DBML" minOccurs="0" name="StatesDdl" nillable="true" type="q2:ArrayOfState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AlumniDTO" nillable="true" type="tns:AlumniDTO" />
+</xs:schema>

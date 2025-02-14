@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="c146fed5-166f-4d42-9036-40dc45874ed0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:50563/Services/FacultyServices.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="FacultyServices.xsd" MetadataType="Schema" ID="d55ce440-39ad-4876-9166-1dcc0b672f13" SourceId="1" SourceUrl="http://localhost:50563/Services/FacultyServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="FacultyServices1.xsd" MetadataType="Schema" ID="9471554c-de53-4866-a81f-605fd7d0d78d" SourceId="1" SourceUrl="http://localhost:50563/Services/FacultyServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="FacultyServices.disco" MetadataType="Disco" ID="b622f082-bbf2-4e08-a025-d6ae54d2991c" SourceId="1" SourceUrl="http://localhost:50563/Services/FacultyServices.svc?disco" />
+    <MetadataFile FileName="FacultyServices2.xsd" MetadataType="Schema" ID="40e924e1-44eb-4c92-9be1-70fab366bace" SourceId="1" SourceUrl="http://localhost:50563/Services/FacultyServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="FacultyServices.wsdl" MetadataType="Wsdl" ID="d4078cdd-47f9-4809-9055-8aa417439fe7" SourceId="1" SourceUrl="http://localhost:50563/Services/FacultyServices.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
