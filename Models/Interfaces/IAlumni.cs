@@ -21,10 +21,10 @@ namespace AlumniManagement.Models.Interfaces
         IEnumerable<AlumniDTO> GetAlumniFullName(string fullName);
 
         
-        void AddAlumni(AlumniDTO alumni);
+        void AddAlumni(DTO.AlumniDTO alumni);
 
         
-        void UpdateAlumni(AlumniDTO alumni);
+        void UpdateAlumni(DTO.AlumniDTO alumni);
 
         
         void DeleteAlumni(int alumniID);

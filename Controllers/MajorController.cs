@@ -41,7 +41,17 @@ namespace AlumniManagement.Controllers
         // GET: Major/Create
         public ActionResult Create()
         {
-            showFacultyDdl();
+            var facultyList = _facultyRepository.GetFaculties()
+                .Select(f => new SelectListItem
+                {
+                    Value = f.FacultyID.ToString(),
+                    Text = f.FacultyName
+                })
+                .ToList();
+
+
+            ViewBag.FacultyLists = new SelectList(facultyList, "Value", "Text");
+
             return View();
         }
 
@@ -76,7 +86,14 @@ namespace AlumniManagement.Controllers
                 return RedirectToAction("Index");
             }
 
-            showFacultyDdl();
+            var facultyList = _facultyRepository.GetFaculties()
+                .Select(f => new SelectListItem
+                {
+                    Value = f.FacultyID.ToString(),
+                    Text = f.FacultyName
+                }).ToList();
+
+            ViewBag.FacultyLists = new SelectList(facultyList, "Value", "Text", existingMajor.FacultyID);
 
             return View(existingMajor);
         }

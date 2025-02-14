@@ -9,7 +9,7 @@
   <xs:complexType name="MajorDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FacultyID" type="xs:int" />
+      <xs:element minOccurs="0" name="FacultyID" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="FacultyName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MajorID" type="xs:int" />
       <xs:element minOccurs="0" name="MajorName" nillable="true" type="xs:string" />

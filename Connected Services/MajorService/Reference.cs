@@ -26,7 +26,7 @@ namespace AlumniManagement.MajorService {
         private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int FacultyIDField;
+        private System.Nullable<int> FacultyIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string FacultyNameField;
@@ -64,7 +64,7 @@ namespace AlumniManagement.MajorService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int FacultyID {
+        public System.Nullable<int> FacultyID {
             get {
                 return this.FacultyIDField;
             }

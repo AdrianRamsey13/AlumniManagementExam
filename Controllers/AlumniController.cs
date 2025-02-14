@@ -12,15 +12,24 @@ namespace AlumniManagement.Controllers
     public class AlumniController : Controller
     {
         private IAlumni _alumniRepository;
+        private IFaculty _facultyRepository;
+        private IMajor _majorRepository;
+        private IExcelService _excelService;
 
         public AlumniController() : this(
-            new Alumni()
+            new Alumni(),
+            new Faculty(),
+            new Major(),
+            new ExcelService()
             )
         {
         }
-        public AlumniController(IAlumni alumniRepository)
+        public AlumniController(IAlumni alumniRepository, IFaculty facultyRepository, IMajor majorRepository ,IExcelService excelService)
         {
             _alumniRepository = alumniRepository;
+            _facultyRepository = facultyRepository;
+            _majorRepository = majorRepository;
+            _excelService = excelService;
         }
 
         // GET: Alumni
@@ -44,20 +53,43 @@ namespace AlumniManagement.Controllers
         // GET: Alumni/Create
         public ActionResult Create()
         {
+            var facultyList = _facultyRepository.GetFaculties()
+                .Select(f => new SelectListItem
+                {
+                    Value = f.FacultyID.ToString(),
+                    Text = f.FacultyName
+                })
+                .ToList();
+            ViewBag.FacultyLists = new SelectList(facultyList, "Value", "Text");
+
+            var majorList = _majorRepository.GetMajors()
+                .Select(m => new SelectListItem
+                {
+                    Value = m.MajorID.ToString(),
+                    Text = m.MajorName
+                })
+                .ToList();
+
+            ViewBag.MajorLists = new SelectList(majorList, "Value", "Text");
             return View();
         }
 
         // POST: Alumni/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(AlumniDTO alumniDTO)
         {
             try
             {
                 // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    _alumniRepository.AddAlumni(alumniDTO);
+                    TempData["SuccessMessage"] = "Alumni added successfully";
+                }
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
                 return View();
             }
@@ -66,6 +98,32 @@ namespace AlumniManagement.Controllers
         // GET: Alumni/Edit/5
         public ActionResult Edit(int id)
         {
+            var existingAlumni = _alumniRepository.GetAlumniByID(id);
+            if (existingAlumni == null)
+            {
+                TempData["ErrorMessage"] = "Alumni not found";
+                return RedirectToAction("Index");
+            }
+
+            var facultyList = _facultyRepository.GetFaculties()
+                .Select(f => new SelectListItem
+                {
+                    Value = f.FacultyID.ToString(),
+                    Text = f.FacultyName
+                })
+                .ToList();
+            ViewBag.FacultyLists = new SelectList(facultyList, "Value", "Text");
+
+            var majorList = _majorRepository.GetMajors()
+                .Select(m => new SelectListItem
+                {
+                    Value = m.MajorID.ToString(),
+                    Text = m.MajorName
+                })
+                .ToList();
+
+            ViewBag.MajorLists = new SelectList(majorList, "Value", "Text");
+
             return View();
         }
 
@@ -105,6 +163,20 @@ namespace AlumniManagement.Controllers
             {
                 return View();
             }
+        }
+
+        //-------------------------------------------------Import Export Excel-------------------------------------------------
+
+        public ActionResult AlumniExport()
+        {
+            var workbook = _excelService.AlumniExportToExcel();
+
+            //save workbook
+            var stream = new System.IO.MemoryStream();  
+
+            workbook.Save(stream, Aspose.Cells.SaveFormat.Xlsx);
+
+            return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Alumni.xlsx");
         }
     }
 }

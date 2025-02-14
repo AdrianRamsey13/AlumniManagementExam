@@ -138,6 +138,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\JobHistoryService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\MajorService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -202,9 +207,29 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Connected Services\JobHistoryService\AlumniManagement.JobHistoryService.JobHistoryDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\JobHistoryService\JobHistoryServices.disco" />
+    <None Include="Connected Services\JobHistoryService\configuration91.svcinfo" />
+    <None Include="Connected Services\JobHistoryService\configuration.svcinfo" />
+    <None Include="Connected Services\JobHistoryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Connected Services\MajorService\AlumniManagement.MajorService.MajorDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Connected Services\JobHistoryService\JobHistoryServices.wsdl" />
+    <None Include="Connected Services\JobHistoryService\JobHistoryServices.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\JobHistoryService\JobHistoryServices1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\JobHistoryService\JobHistoryServices2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\MajorService\MajorServices.disco" />
     <None Include="Connected Services\MajorService\configuration91.svcinfo" />
     <None Include="Connected Services\MajorService\configuration.svcinfo" />
@@ -289,10 +314,11 @@
     <Content Include="Views\Major\Create.cshtml" />
     <Content Include="Views\Major\Edit.cshtml" />
     <Content Include="Views\Alumni\Index.cshtml" />
+    <Content Include="Views\Alumni\Create.cshtml" />
+    <Content Include="Views\JobHistory\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\JobHistory\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -327,6 +353,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\AlumniService\" />
     <WCFMetadataStorage Include="Connected Services\FacultyService\" />
+    <WCFMetadataStorage Include="Connected Services\JobHistoryService\" />
     <WCFMetadataStorage Include="Connected Services\MajorService\" />
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="8e1a64d1-02cb-4804-aab9-fbdf5e0cea39" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:50563/Services/JobHistoryServices.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="JobHistoryServices.disco" MetadataType="Disco" ID="482ea276-8801-4060-8f89-5ae53c46b39e" SourceId="1" SourceUrl="http://localhost:50563/Services/JobHistoryServices.svc?disco" />
+    <MetadataFile FileName="JobHistoryServices.xsd" MetadataType="Schema" ID="a624b4c5-3bf4-4b5e-8410-6154899c04e5" SourceId="1" SourceUrl="http://localhost:50563/Services/JobHistoryServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="JobHistoryServices1.xsd" MetadataType="Schema" ID="4cf9bd39-ce81-44fd-9202-211f824b44a8" SourceId="1" SourceUrl="http://localhost:50563/Services/JobHistoryServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="JobHistoryServices2.xsd" MetadataType="Schema" ID="eb0e7fea-49db-4b3c-aaa8-c76af8b31cc2" SourceId="1" SourceUrl="http://localhost:50563/Services/JobHistoryServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="JobHistoryServices.wsdl" MetadataType="Wsdl" ID="5b1dbb6d-d0bd-4326-94e1-5f89e29c671d" SourceId="1" SourceUrl="http://localhost:50563/Services/JobHistoryServices.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

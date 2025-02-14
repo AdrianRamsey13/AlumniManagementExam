@@ -46,13 +46,11 @@ namespace AlumniManagement.Models.Repositories
             throw new NotImplementedException();
         }
 
-
-
         //--------------------------------------------------------------------------------
 
-        public void AddAlumni(AlumniDTO alumni)
+        public void AddAlumni(DTO.AlumniDTO alumni)
         {
-            var result = Mapping.Mapper.Map<AlumniDTO>(alumni);
+            var result = Mapping.Mapper.Map<AlumniService.AlumniDTO>(alumni);
             _alumniServiceClient.AddAlumni(result);
         }
 
@@ -61,9 +59,9 @@ namespace AlumniManagement.Models.Repositories
             _alumniServiceClient.DeleteAlumni(alumniID);
         }        
                
-        public void UpdateAlumni(AlumniDTO alumni)
+        public void UpdateAlumni(DTO.AlumniDTO alumni)
         {
-            var result = Mapping.Mapper.Map<AlumniDTO>(alumni);
+            var result = Mapping.Mapper.Map<AlumniService.AlumniDTO>(alumni);
             _alumniServiceClient.UpdateAlumni(result);
         }
     }
