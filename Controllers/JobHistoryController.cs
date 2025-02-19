@@ -49,24 +49,38 @@ namespace AlumniManagement.Controllers
             try
             {
                 // TODO: Add insert logic here
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    _jobHistoryRepository.AddJobHistory(jobHistoryDTO, alumniID);
-                    TempData["SuccessMessage"] = "Job History added successfully";
+                    var errors = ModelState
+                        .Where(x => x.Value.Errors.Count > 0)
+                        .ToDictionary(
+                            kvp => kvp.Key,
+                            kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).FirstOrDefault()
+                        );
+
+                    return Json(new { success = false, errors });
                 }
-                return RedirectToAction("Index", new { alumniID });
+                _jobHistoryRepository.AddJobHistory(jobHistoryDTO, alumniID);
+                TempData["SuccessMessage"] = "Job History added successfully";
+                return Json(new { success = true });
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = "Failed to add Job History due to " + ex.Message;
-                return View();
+                return Json(new { success = false });
             }
         }
 
         // GET: JobHistory/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, int alumniID)
         {
-            return View();
+            var jobHistory = _jobHistoryRepository.GetJobHistoryByID(alumniID, id);
+            if (jobHistory == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(jobHistory);
         }
 
         // POST: JobHistory/Edit/5
