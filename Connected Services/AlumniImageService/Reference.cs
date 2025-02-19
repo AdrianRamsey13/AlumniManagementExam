@@ -144,11 +144,11 @@ namespace AlumniManagement.AlumniImageService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlumniImageService/AddImage", ReplyAction="http://tempuri.org/IAlumniImageService/AddImageResponse")]
         System.Threading.Tasks.Task AddImageAsync(AlumniManagement.AlumniImageService.AlumniImageDTO[] alumniImages);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlumniImageService/DeleteIamgeByID", ReplyAction="http://tempuri.org/IAlumniImageService/DeleteIamgeByIDResponse")]
-        void DeleteIamgeByID(int imageID, int alumniID);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlumniImageService/DeleteImageByID", ReplyAction="http://tempuri.org/IAlumniImageService/DeleteImageByIDResponse")]
+        void DeleteImageByID(int imageID, int alumniID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlumniImageService/DeleteIamgeByID", ReplyAction="http://tempuri.org/IAlumniImageService/DeleteIamgeByIDResponse")]
-        System.Threading.Tasks.Task DeleteIamgeByIDAsync(int imageID, int alumniID);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlumniImageService/DeleteImageByID", ReplyAction="http://tempuri.org/IAlumniImageService/DeleteImageByIDResponse")]
+        System.Threading.Tasks.Task DeleteImageByIDAsync(int imageID, int alumniID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -202,12 +202,12 @@ namespace AlumniManagement.AlumniImageService {
             return base.Channel.AddImageAsync(alumniImages);
         }
         
-        public void DeleteIamgeByID(int imageID, int alumniID) {
-            base.Channel.DeleteIamgeByID(imageID, alumniID);
+        public void DeleteImageByID(int imageID, int alumniID) {
+            base.Channel.DeleteImageByID(imageID, alumniID);
         }
         
-        public System.Threading.Tasks.Task DeleteIamgeByIDAsync(int imageID, int alumniID) {
-            return base.Channel.DeleteIamgeByIDAsync(imageID, alumniID);
+        public System.Threading.Tasks.Task DeleteImageByIDAsync(int imageID, int alumniID) {
+            return base.Channel.DeleteImageByIDAsync(imageID, alumniID);
         }
     }
 }

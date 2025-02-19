@@ -42,7 +42,7 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="DeleteIamgeByID">
+  <xs:element name="DeleteImageByID">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="imageID" type="xs:int" />
@@ -50,7 +50,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="DeleteIamgeByIDResponse">
+  <xs:element name="DeleteImageByIDResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

@@ -418,6 +418,7 @@
     <Content Include="Views\JobHistory\Create.cshtml" />
     <Content Include="Views\JobHistory\Edit.cshtml" />
     <Content Include="Views\Alumni\Edit.cshtml" />
+    <Content Include="Views\AlumniImage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\AlumniImages\" />

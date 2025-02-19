@@ -15,7 +15,7 @@ namespace AlumniManagement.Models.Interfaces
         AlumniImageDTO GetImageByID(int imageID, int alumniID);
 
         
-        Task AddImage(IEnumerable<AlumniImageDTO> alumniImages);
+        Task AddImage(IEnumerable<DTO.AlumniImageDTO> alumniImages);
 
         
         Task DeleteIamgeByIDAsync(int imageID, int alumniID);

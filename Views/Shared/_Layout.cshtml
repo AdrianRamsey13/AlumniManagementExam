@@ -40,7 +40,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @RenderSection("scripts", required: false)
-    <script>
+<script>
     $(document).ready(function () {
         var succesMessage = '@TempData["SuccessMessage"]';
         var errorMessage = '@TempData["ErrorMessage"]';
@@ -49,10 +49,10 @@
                 icon: 'success',
                 title: 'Success',
                 text: succesMessage
-
+                @TempData["SuccessMessage"] = "";
             });
-        } 
+        }
     });
-    </script>
+</script>
 </body>
 </html>

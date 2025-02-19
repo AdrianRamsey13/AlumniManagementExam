@@ -32,22 +32,33 @@ namespace AlumniManagement.Web.Controllers
         }
 
         // GET: AlumniImages
-        public ActionResult Index(int id)
+        public ActionResult Index(int alumniID)
         {
-            var alumniImages = _alumniRepository.GetAlumniByID(id); //.AlumniImages;
+         
+            ViewBag.AlumniID = alumniID;
+            var alumniImages = _alumniImageRepository.GetAllImages(alumniID);
+            var fullName = _alumniRepository.GetAlumniByID(alumniID).FullName;
+            ViewBag.FullName = fullName;
             return View(alumniImages);
+        }
+
+        public JsonResult GetAlumniImages(int alumniID)
+        {
+            ViewBag.AlumniID = alumniID;
+            var images = _alumniImageRepository.GetAllImages(alumniID);
+            return Json(new { data = images }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: AlumniImages/Create
         [HttpPost]
-        public async Task<ActionResult> UploadImages(int alumniId, HttpPostedFileBase[] files)
+        public async Task<ActionResult> UploadImages(int alumniID, HttpPostedFileBase[] files)
         {
             try
             {
                 if (files == null || files.Length == 0)
                 {
                     TempData["ErrorMessage"] = "Please upload at least one valid file.";
-                    return RedirectToAction("Index", new { id = alumniId });
+                    return RedirectToAction("Index", new { alumniID = alumniID });
                 }
 
                 var alumniImage = new List<AlumniImageDTO>();
@@ -57,14 +68,14 @@ namespace AlumniManagement.Web.Controllers
                     if (file.ContentLength > fileSizeLimit) // 10 MB
                     {
                         TempData["ErrorMessage"] = "File size must be less than 10 MB.";
-                        return RedirectToAction("Index", new { id = alumniId });
+                        return RedirectToAction("Index", new { alumniID = alumniID });
                     }
 
                     var extension = Path.GetExtension(file.FileName).ToLower();
-                    if (extension != ".jpeg" && extension != ".png")
+                    if (extension != ".jpeg" && extension != ".png" && extension != ".jpg")
                     {
-                        TempData["ErrorMessage"] = "Only .jpeg and .png files are allowed.";
-                        return RedirectToAction("Index", new { id = alumniId });
+                        TempData["ErrorMessage"] = "Only .jpeg, jpg and .png files are allowed.";
+                        return RedirectToAction("Index", new { alumniID = alumniID });
                     }
 
                     var fileName = Guid.NewGuid().ToString() + extension;
@@ -74,8 +85,8 @@ namespace AlumniManagement.Web.Controllers
 
                     var image = new AlumniImageDTO
                     {
-                        AlumniID = alumniId,
-                        ImagePath = Server.MapPath(alumniImagesPath),
+                        AlumniID = alumniID,
+                        ImagePath =alumniImagesPath,
                         FileName = fileName,
                         UploadDate = DateTime.Now
                     };
@@ -84,26 +95,26 @@ namespace AlumniManagement.Web.Controllers
 
                 await _alumniImageRepository.AddImage(alumniImage);
                 TempData["SuccessMessage"] = "Images uploaded successfully.";
-                return RedirectToAction("Index", new { id = alumniId });
+                return RedirectToAction("Index", new { alumniID = alumniID });
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = "An error occurred while uploading the images: " + ex.Message;
-                return RedirectToAction("Index", new { id = alumniId });
+                return RedirectToAction("Index", new { alumniID = alumniID });
             }
         }
 
         // POST: AlumniImages/Delete/5
         [HttpPost]
-        public async Task<ActionResult> DeleteImage(int id, int alumniId)
+        public async Task<ActionResult> DeleteImage(int id, int alumniID)
         {
             try
             {
-                var image = _alumniImageRepository.GetImageByID(id, alumniId);
+                var image = _alumniImageRepository.GetImageByID(id, alumniID);
                 if (image == null)
                 {
                     ModelState.AddModelError("", "Image not found.");
-                    return RedirectToAction("Index", new { id = alumniId });
+                    return RedirectToAction("Index", new { alumniID = alumniID });
                 }
                 else
                 {
@@ -112,14 +123,14 @@ namespace AlumniManagement.Web.Controllers
                     {
                         System.IO.File.Delete(filePath);
                     }
-                    await _alumniImageRepository.DeleteIamgeByIDAsync(id, alumniId);
+                    await _alumniImageRepository.DeleteIamgeByIDAsync(id, alumniID);
                 }
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error deleting image due to " + ex.Message);
             }
-            return RedirectToAction("Index", new { id = alumniId });
+            return RedirectToAction("Index", new { alumniID = alumniID });
         }
 
         public async Task<ActionResult> DeleteSelectedImages(int alumniId, List<int> selectedImages)
@@ -129,7 +140,7 @@ namespace AlumniManagement.Web.Controllers
                 if (selectedImages == null || selectedImages.Count == 0)
                 {
                     ModelState.AddModelError("", "Please select at least one image to delete.");
-                    return RedirectToAction("Index", new { id = alumniId });
+                    return RedirectToAction("Index", new { alumniID = alumniId });
                 }
                 foreach (var imageId in selectedImages)
                 {
@@ -140,7 +151,7 @@ namespace AlumniManagement.Web.Controllers
             {
                 ModelState.AddModelError("", "Error deleting image due to " + ex.Message);
             }
-            return RedirectToAction("Index", new { id = alumniId });
+            return RedirectToAction("Index", new { alumniID = alumniId });
         }
     }
 }

@@ -25,11 +25,11 @@
   <wsdl:message name="IAlumniImageService_AddImage_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddImageResponse" />
   </wsdl:message>
-  <wsdl:message name="IAlumniImageService_DeleteIamgeByID_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteIamgeByID" />
+  <wsdl:message name="IAlumniImageService_DeleteImageByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteImageByID" />
   </wsdl:message>
-  <wsdl:message name="IAlumniImageService_DeleteIamgeByID_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteIamgeByIDResponse" />
+  <wsdl:message name="IAlumniImageService_DeleteImageByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteImageByIDResponse" />
   </wsdl:message>
   <wsdl:portType name="IAlumniImageService">
     <wsdl:operation name="GetAllImages">
@@ -44,9 +44,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAlumniImageService/AddImage" message="tns:IAlumniImageService_AddImage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAlumniImageService/AddImageResponse" message="tns:IAlumniImageService_AddImage_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteIamgeByID">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAlumniImageService/DeleteIamgeByID" message="tns:IAlumniImageService_DeleteIamgeByID_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAlumniImageService/DeleteIamgeByIDResponse" message="tns:IAlumniImageService_DeleteIamgeByID_OutputMessage" />
+    <wsdl:operation name="DeleteImageByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlumniImageService/DeleteImageByID" message="tns:IAlumniImageService_DeleteImageByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlumniImageService/DeleteImageByIDResponse" message="tns:IAlumniImageService_DeleteImageByID_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAlumniImageService" type="tns:IAlumniImageService">
@@ -78,8 +78,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteIamgeByID">
-      <soap:operation soapAction="http://tempuri.org/IAlumniImageService/DeleteIamgeByID" style="document" />
+    <wsdl:operation name="DeleteImageByID">
+      <soap:operation soapAction="http://tempuri.org/IAlumniImageService/DeleteImageByID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
