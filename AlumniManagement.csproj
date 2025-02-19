@@ -54,6 +54,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -128,7 +129,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Connected Services\AlumniImageService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\AlumniService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\DistrictService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -148,7 +159,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\StateService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AlumniController.cs" />
+    <Compile Include="Controllers\AlumniImageController.cs" />
     <Compile Include="Controllers\FacultyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobHistoryController.cs" />
@@ -156,31 +173,75 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Alumni.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Alumni.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\DTO\AlumniDTO.cs" />
+    <Compile Include="Models\DTO\AlumniImageDTO.cs" />
+    <Compile Include="Models\DTO\DistrictDTO.cs" />
     <Compile Include="Models\DTO\FacultyDTO.cs" />
     <Compile Include="Models\DTO\JobHistoryDTO.cs" />
     <Compile Include="Models\DTO\MajorDTO.cs" />
+    <Compile Include="Models\DTO\StateDTO.cs" />
     <Compile Include="Models\Interfaces\IAlumni.cs" />
+    <Compile Include="Models\Interfaces\IAlumniImage.cs" />
+    <Compile Include="Models\Interfaces\IDistrict.cs" />
     <Compile Include="Models\Interfaces\IExcelService.cs" />
     <Compile Include="Models\Interfaces\IFaculty.cs" />
     <Compile Include="Models\Interfaces\IJobHistory.cs" />
     <Compile Include="Models\Interfaces\IMajor.cs" />
+    <Compile Include="Models\Interfaces\IState.cs" />
     <Compile Include="Models\ModelMapping.cs" />
     <Compile Include="Models\Repositories\Alumni.cs" />
+    <Compile Include="Models\Repositories\AlumniImage.cs" />
+    <Compile Include="Models\Repositories\District.cs" />
     <Compile Include="Models\Repositories\ExcelService.cs" />
     <Compile Include="Models\Repositories\Faculty.cs" />
     <Compile Include="Models\Repositories\JobHistory.cs" />
     <Compile Include="Models\Repositories\Major.cs" />
+    <Compile Include="Models\Repositories\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\AlumniImageService\AlumniImageService.disco" />
+    <Content Include="Connected Services\AlumniImageService\AlumniManagement.AlumniImageService.AlumniImageDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\AlumniImageService\configuration91.svcinfo" />
+    <None Include="Connected Services\AlumniImageService\configuration.svcinfo" />
+    <None Include="Connected Services\AlumniImageService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Connected Services\AlumniService\AlumniManagement.AlumniService.AlumniDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Connected Services\AlumniImageService\AlumniImageService.wsdl" />
+    <None Include="Connected Services\AlumniImageService\AlumniImageService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AlumniImageService\AlumniImageService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AlumniImageService\AlumniImageService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\AlumniService\AlumniServices.disco" />
     <None Include="Connected Services\AlumniService\configuration91.svcinfo" />
     <None Include="Connected Services\AlumniService\configuration.svcinfo" />
     <None Include="Connected Services\AlumniService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\DistrictService\AlumniManagement.DistrictService.DistrictDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\DistrictService\DistrictService.disco" />
+    <None Include="Connected Services\DistrictService\configuration91.svcinfo" />
+    <None Include="Connected Services\DistrictService\configuration.svcinfo" />
+    <None Include="Connected Services\DistrictService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -198,6 +259,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\AlumniService\AlumniServices3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DistrictService\DistrictService.wsdl" />
+    <None Include="Connected Services\DistrictService\DistrictService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DistrictService\DistrictService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DistrictService\DistrictService2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\FacultyService\FacultyServices.disco" />
@@ -234,6 +305,16 @@
     <None Include="Connected Services\MajorService\configuration91.svcinfo" />
     <None Include="Connected Services\MajorService\configuration.svcinfo" />
     <None Include="Connected Services\MajorService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\StateService\AlumniManagement.StateService.StateDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\StateService\StateService.disco" />
+    <None Include="Connected Services\StateService\configuration91.svcinfo" />
+    <None Include="Connected Services\StateService\configuration.svcinfo" />
+    <None Include="Connected Services\StateService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -282,6 +363,24 @@
     <None Include="Connected Services\MajorService\MajorServices2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Models\Alumni.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Alumni.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Connected Services\StateService\StateService.wsdl" />
+    <None Include="Connected Services\StateService\StateService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\StateService\StateService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\StateService\StateService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Models\Alumni.dbml.layout">
+      <DependentUpon>Alumni.dbml</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -316,9 +415,12 @@
     <Content Include="Views\Alumni\Index.cshtml" />
     <Content Include="Views\Alumni\Create.cshtml" />
     <Content Include="Views\JobHistory\Index.cshtml" />
+    <Content Include="Views\JobHistory\Create.cshtml" />
+    <Content Include="Views\JobHistory\Edit.cshtml" />
+    <Content Include="Views\Alumni\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\AlumniImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -351,10 +453,16 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\AlumniImageService\" />
     <WCFMetadataStorage Include="Connected Services\AlumniService\" />
+    <WCFMetadataStorage Include="Connected Services\DistrictService\" />
     <WCFMetadataStorage Include="Connected Services\FacultyService\" />
     <WCFMetadataStorage Include="Connected Services\JobHistoryService\" />
     <WCFMetadataStorage Include="Connected Services\MajorService\" />
+    <WCFMetadataStorage Include="Connected Services\StateService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

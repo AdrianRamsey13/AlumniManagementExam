@@ -1,33 +1,38 @@
 ﻿using AlumniManagement.AlumniService;
 using AlumniManagement.FacultyService;
 using AlumniManagement.Models.Interfaces;
+using AutoMapper;
+using System.Web.Mvc;
 using AlumniManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
+using AlumniManagement.Models.DTO;
 
 namespace AlumniManagement.Models.Repositories
 {
     public class Alumni : IAlumni
     {
         private AlumniServicesClient _alumniServiceClient;
+        public AlumniDataContext _context;
 
         public Alumni()
         {
             _alumniServiceClient = new AlumniServicesClient();
         }
 
-        public IEnumerable<AlumniDTO> GetAlumnis()
+        public IEnumerable<AlumniService.AlumniDTO> GetAlumnis()
         {
             var data = _alumniServiceClient.GetAlumnis();
-            var result = data.Select(a => Mapping.Mapper.Map<AlumniDTO>(a)).ToList();
+            var result = data.Select(a => Mapping.Mapper.Map<AlumniService.AlumniDTO>(a)).ToList();
             return result;
         }
-        public AlumniDTO GetAlumniByID(int alumniID)
+        public AlumniService.AlumniDTO GetAlumniByID(int alumniID)
         {
             var data = _alumniServiceClient.GetAlumniByID(alumniID);
-            var result = Mapping.Mapper.Map<AlumniDTO>(data);
+            var result = Mapping.Mapper.Map<AlumniService.AlumniDTO>(data);
             return result;
         }
         public int GetDistrictIdByName(string districtName)
@@ -41,7 +46,7 @@ namespace AlumniManagement.Models.Repositories
             var data = _alumniServiceClient.GetStateIdByName(stateName);
             return data;
         }
-        public IEnumerable<AlumniDTO> GetAlumniFullName(string fullName)
+        public IEnumerable<AlumniService.AlumniDTO> GetAlumniFullName(string fullName)
         {
             throw new NotImplementedException();
         }
@@ -64,5 +69,6 @@ namespace AlumniManagement.Models.Repositories
             var result = Mapping.Mapper.Map<AlumniService.AlumniDTO>(alumni);
             _alumniServiceClient.UpdateAlumni(result);
         }
+
     }
 }

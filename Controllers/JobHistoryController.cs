@@ -24,6 +24,7 @@ namespace AlumniManagement.Controllers
         // GET: JobHistory
         public ActionResult Index(int alumniID)
         {
+            ViewBag.AlumniID = alumniID;
             var jobHistories = _jobHistoryRepository.GetJobHistories(alumniID);
             return View(jobHistories);
         }
@@ -35,8 +36,9 @@ namespace AlumniManagement.Controllers
         }
 
         // GET: JobHistory/Create
-        public ActionResult Create()
+        public ActionResult Create(int alumniID)
         {
+            ViewBag.AlumniID = alumniID;
             return View();
         }
 
@@ -52,7 +54,7 @@ namespace AlumniManagement.Controllers
                     _jobHistoryRepository.AddJobHistory(jobHistoryDTO, alumniID);
                     TempData["SuccessMessage"] = "Job History added successfully";
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { alumniID });
             }
             catch (Exception ex)
             {
@@ -62,7 +64,7 @@ namespace AlumniManagement.Controllers
         }
 
         // GET: JobHistory/Edit/5
-        public ActionResult Edit(int id, int alumniID)
+        public ActionResult Edit(int id)
         {
             return View();
         }

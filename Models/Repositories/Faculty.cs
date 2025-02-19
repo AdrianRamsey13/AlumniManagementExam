@@ -48,15 +48,18 @@ namespace AlumniManagement.Models.Repositories
 
         public void UpdateFaculty(DTO.FacultyDTO facultyDTO)
         {
-            var faculty = new FacultyService.FacultyDTO
-            {
-                FacultyID = facultyDTO.FacultyID,
-                FacultyName = facultyDTO.FacultyName,
-                Description = facultyDTO.Description,
-                ModifiedDate = DateTime.Now
-            };
+            //var faculty = new FacultyService.FacultyDTO
+            //{
+            //    FacultyID = facultyDTO.FacultyID,
+            //    FacultyName = facultyDTO.FacultyName,
+            //    Description = facultyDTO.Description,
+            //    ModifiedDate = DateTime.Now
+            //};
 
-            _facultyClient.UpdateFaculty(faculty);
+            //_facultyClient.UpdateFaculty(faculty);
+
+            var updateData = Mapping.Mapper.Map<DTO.FacultyDTO, FacultyService.FacultyDTO>(facultyDTO);
+            _facultyClient.UpdateFaculty(updateData);
         }
         public void DeleteFaculty(int id)
         {

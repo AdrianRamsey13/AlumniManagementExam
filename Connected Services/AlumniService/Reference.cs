@@ -29,10 +29,13 @@ namespace AlumniManagement.AlumniService {
         private int AlumniIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> DateOfBirthField;
+        private System.DateTime DateOfBirthField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DegreeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Web.Mvc.SelectListItem[] DegreesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> DistrictIDField;
@@ -41,10 +44,13 @@ namespace AlumniManagement.AlumniService {
         private string DistrictNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AlumniManagement.AlumniService.District[] DistrictsDdlField;
+        private System.Web.Mvc.SelectListItem[] DistrictsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Web.Mvc.SelectListItem[] FacultiesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int FacultyIDField;
@@ -77,6 +83,9 @@ namespace AlumniManagement.AlumniService {
         private string MajorNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Web.Mvc.SelectListItem[] MajorsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MiddleNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -92,7 +101,7 @@ namespace AlumniManagement.AlumniService {
         private string StateNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AlumniManagement.AlumniService.State[] StatesDdlField;
+        private System.Web.Mvc.SelectListItem[] StatesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -131,7 +140,7 @@ namespace AlumniManagement.AlumniService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> DateOfBirth {
+        public System.DateTime DateOfBirth {
             get {
                 return this.DateOfBirthField;
             }
@@ -152,6 +161,19 @@ namespace AlumniManagement.AlumniService {
                 if ((object.ReferenceEquals(this.DegreeField, value) != true)) {
                     this.DegreeField = value;
                     this.RaisePropertyChanged("Degree");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Web.Mvc.SelectListItem[] Degrees {
+            get {
+                return this.DegreesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DegreesField, value) != true)) {
+                    this.DegreesField = value;
+                    this.RaisePropertyChanged("Degrees");
                 }
             }
         }
@@ -183,14 +205,14 @@ namespace AlumniManagement.AlumniService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public AlumniManagement.AlumniService.District[] DistrictsDdl {
+        public System.Web.Mvc.SelectListItem[] Districts {
             get {
-                return this.DistrictsDdlField;
+                return this.DistrictsField;
             }
             set {
-                if ((object.ReferenceEquals(this.DistrictsDdlField, value) != true)) {
-                    this.DistrictsDdlField = value;
-                    this.RaisePropertyChanged("DistrictsDdl");
+                if ((object.ReferenceEquals(this.DistrictsField, value) != true)) {
+                    this.DistrictsField = value;
+                    this.RaisePropertyChanged("Districts");
                 }
             }
         }
@@ -204,6 +226,19 @@ namespace AlumniManagement.AlumniService {
                 if ((object.ReferenceEquals(this.EmailField, value) != true)) {
                     this.EmailField = value;
                     this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Web.Mvc.SelectListItem[] Faculties {
+            get {
+                return this.FacultiesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FacultiesField, value) != true)) {
+                    this.FacultiesField = value;
+                    this.RaisePropertyChanged("Faculties");
                 }
             }
         }
@@ -339,969 +374,7 @@ namespace AlumniManagement.AlumniService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string MiddleName {
-            get {
-                return this.MiddleNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MiddleNameField, value) != true)) {
-                    this.MiddleNameField = value;
-                    this.RaisePropertyChanged("MiddleName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string MobileNumber {
-            get {
-                return this.MobileNumberField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MobileNumberField, value) != true)) {
-                    this.MobileNumberField = value;
-                    this.RaisePropertyChanged("MobileNumber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime ModifiedDate {
-            get {
-                return this.ModifiedDateField;
-            }
-            set {
-                if ((this.ModifiedDateField.Equals(value) != true)) {
-                    this.ModifiedDateField = value;
-                    this.RaisePropertyChanged("ModifiedDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int StateID {
-            get {
-                return this.StateIDField;
-            }
-            set {
-                if ((this.StateIDField.Equals(value) != true)) {
-                    this.StateIDField = value;
-                    this.RaisePropertyChanged("StateID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StateName {
-            get {
-                return this.StateNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StateNameField, value) != true)) {
-                    this.StateNameField = value;
-                    this.RaisePropertyChanged("StateName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public AlumniManagement.AlumniService.State[] StatesDdl {
-            get {
-                return this.StatesDdlField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StatesDdlField, value) != true)) {
-                    this.StatesDdlField = value;
-                    this.RaisePropertyChanged("StatesDdl");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="District", Namespace="http://schemas.datacontract.org/2004/07/AlumniWCF.DBML")]
-    [System.SerializableAttribute()]
-    public partial class District : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AlumniManagement.AlumniService.Alumni[] AlumnisField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DistrictIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DistrictNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AlumniManagement.AlumniService.State StateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int StateIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public AlumniManagement.AlumniService.Alumni[] Alumnis {
-            get {
-                return this.AlumnisField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AlumnisField, value) != true)) {
-                    this.AlumnisField = value;
-                    this.RaisePropertyChanged("Alumnis");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DistrictID {
-            get {
-                return this.DistrictIDField;
-            }
-            set {
-                if ((this.DistrictIDField.Equals(value) != true)) {
-                    this.DistrictIDField = value;
-                    this.RaisePropertyChanged("DistrictID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string DistrictName {
-            get {
-                return this.DistrictNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DistrictNameField, value) != true)) {
-                    this.DistrictNameField = value;
-                    this.RaisePropertyChanged("DistrictName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public AlumniManagement.AlumniService.State State {
-            get {
-                return this.StateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StateField, value) != true)) {
-                    this.StateField = value;
-                    this.RaisePropertyChanged("State");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int StateID {
-            get {
-                return this.StateIDField;
-            }
-            set {
-                if ((this.StateIDField.Equals(value) != true)) {
-                    this.StateIDField = value;
-                    this.RaisePropertyChanged("StateID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="State", Namespace="http://schemas.datacontract.org/2004/07/AlumniWCF.DBML")]
-    [System.SerializableAttribute()]
-    public partial class State : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AlumniManagement.AlumniService.District[] DistrictsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int StateIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StateNameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public AlumniManagement.AlumniService.District[] Districts {
-            get {
-                return this.DistrictsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DistrictsField, value) != true)) {
-                    this.DistrictsField = value;
-                    this.RaisePropertyChanged("Districts");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int StateID {
-            get {
-                return this.StateIDField;
-            }
-            set {
-                if ((this.StateIDField.Equals(value) != true)) {
-                    this.StateIDField = value;
-                    this.RaisePropertyChanged("StateID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StateName {
-            get {
-                return this.StateNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StateNameField, value) != true)) {
-                    this.StateNameField = value;
-                    this.RaisePropertyChanged("StateName");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Alumni", Namespace="http://schemas.datacontract.org/2004/07/AlumniWCF.DBML")]
-    [System.SerializableAttribute()]
-    public partial class Alumni : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int AlumniIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> DateOfBirthField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DegreeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AlumniManagement.AlumniService.District DistrictField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> DistrictIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FirstNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> GraduationYearField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AlumniManagement.AlumniService.JobHistory[] JobHistoriesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LastNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LinkedInProfileField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AlumniManagement.AlumniService.Major MajorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> MajorIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MiddleNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MobileNumberField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime ModifiedDateField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
-            get {
-                return this.AddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int AlumniID {
-            get {
-                return this.AlumniIDField;
-            }
-            set {
-                if ((this.AlumniIDField.Equals(value) != true)) {
-                    this.AlumniIDField = value;
-                    this.RaisePropertyChanged("AlumniID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> DateOfBirth {
-            get {
-                return this.DateOfBirthField;
-            }
-            set {
-                if ((this.DateOfBirthField.Equals(value) != true)) {
-                    this.DateOfBirthField = value;
-                    this.RaisePropertyChanged("DateOfBirth");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Degree {
-            get {
-                return this.DegreeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DegreeField, value) != true)) {
-                    this.DegreeField = value;
-                    this.RaisePropertyChanged("Degree");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public AlumniManagement.AlumniService.District District {
-            get {
-                return this.DistrictField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DistrictField, value) != true)) {
-                    this.DistrictField = value;
-                    this.RaisePropertyChanged("District");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> DistrictID {
-            get {
-                return this.DistrictIDField;
-            }
-            set {
-                if ((this.DistrictIDField.Equals(value) != true)) {
-                    this.DistrictIDField = value;
-                    this.RaisePropertyChanged("DistrictID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Email {
-            get {
-                return this.EmailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
-                    this.EmailField = value;
-                    this.RaisePropertyChanged("Email");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FirstName {
-            get {
-                return this.FirstNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
-                    this.FirstNameField = value;
-                    this.RaisePropertyChanged("FirstName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> GraduationYear {
-            get {
-                return this.GraduationYearField;
-            }
-            set {
-                if ((this.GraduationYearField.Equals(value) != true)) {
-                    this.GraduationYearField = value;
-                    this.RaisePropertyChanged("GraduationYear");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public AlumniManagement.AlumniService.JobHistory[] JobHistories {
-            get {
-                return this.JobHistoriesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.JobHistoriesField, value) != true)) {
-                    this.JobHistoriesField = value;
-                    this.RaisePropertyChanged("JobHistories");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LastName {
-            get {
-                return this.LastNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LastNameField, value) != true)) {
-                    this.LastNameField = value;
-                    this.RaisePropertyChanged("LastName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LinkedInProfile {
-            get {
-                return this.LinkedInProfileField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LinkedInProfileField, value) != true)) {
-                    this.LinkedInProfileField = value;
-                    this.RaisePropertyChanged("LinkedInProfile");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public AlumniManagement.AlumniService.Major Major {
-            get {
-                return this.MajorField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MajorField, value) != true)) {
-                    this.MajorField = value;
-                    this.RaisePropertyChanged("Major");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> MajorID {
-            get {
-                return this.MajorIDField;
-            }
-            set {
-                if ((this.MajorIDField.Equals(value) != true)) {
-                    this.MajorIDField = value;
-                    this.RaisePropertyChanged("MajorID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string MiddleName {
-            get {
-                return this.MiddleNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MiddleNameField, value) != true)) {
-                    this.MiddleNameField = value;
-                    this.RaisePropertyChanged("MiddleName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string MobileNumber {
-            get {
-                return this.MobileNumberField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MobileNumberField, value) != true)) {
-                    this.MobileNumberField = value;
-                    this.RaisePropertyChanged("MobileNumber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime ModifiedDate {
-            get {
-                return this.ModifiedDateField;
-            }
-            set {
-                if ((this.ModifiedDateField.Equals(value) != true)) {
-                    this.ModifiedDateField = value;
-                    this.RaisePropertyChanged("ModifiedDate");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Major", Namespace="http://schemas.datacontract.org/2004/07/AlumniWCF.DBML")]
-    [System.SerializableAttribute()]
-    public partial class Major : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AlumniManagement.AlumniService.Alumni[] AlumnisField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AlumniManagement.AlumniService.Faculty FacultyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> FacultyIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MajorIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MajorNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime ModifiedDateField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public AlumniManagement.AlumniService.Alumni[] Alumnis {
-            get {
-                return this.AlumnisField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AlumnisField, value) != true)) {
-                    this.AlumnisField = value;
-                    this.RaisePropertyChanged("Alumnis");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public AlumniManagement.AlumniService.Faculty Faculty {
-            get {
-                return this.FacultyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FacultyField, value) != true)) {
-                    this.FacultyField = value;
-                    this.RaisePropertyChanged("Faculty");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> FacultyID {
-            get {
-                return this.FacultyIDField;
-            }
-            set {
-                if ((this.FacultyIDField.Equals(value) != true)) {
-                    this.FacultyIDField = value;
-                    this.RaisePropertyChanged("FacultyID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MajorID {
-            get {
-                return this.MajorIDField;
-            }
-            set {
-                if ((this.MajorIDField.Equals(value) != true)) {
-                    this.MajorIDField = value;
-                    this.RaisePropertyChanged("MajorID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string MajorName {
-            get {
-                return this.MajorNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MajorNameField, value) != true)) {
-                    this.MajorNameField = value;
-                    this.RaisePropertyChanged("MajorName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime ModifiedDate {
-            get {
-                return this.ModifiedDateField;
-            }
-            set {
-                if ((this.ModifiedDateField.Equals(value) != true)) {
-                    this.ModifiedDateField = value;
-                    this.RaisePropertyChanged("ModifiedDate");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="JobHistory", Namespace="http://schemas.datacontract.org/2004/07/AlumniWCF.DBML")]
-    [System.SerializableAttribute()]
-    public partial class JobHistory : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AlumniManagement.AlumniService.Alumni AlumniField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> AlumniIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CompanyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> EndDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int JobHistoryIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string JobTitleField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime ModifiedDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> StartDateField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public AlumniManagement.AlumniService.Alumni Alumni {
-            get {
-                return this.AlumniField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AlumniField, value) != true)) {
-                    this.AlumniField = value;
-                    this.RaisePropertyChanged("Alumni");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> AlumniID {
-            get {
-                return this.AlumniIDField;
-            }
-            set {
-                if ((this.AlumniIDField.Equals(value) != true)) {
-                    this.AlumniIDField = value;
-                    this.RaisePropertyChanged("AlumniID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Company {
-            get {
-                return this.CompanyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CompanyField, value) != true)) {
-                    this.CompanyField = value;
-                    this.RaisePropertyChanged("Company");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> EndDate {
-            get {
-                return this.EndDateField;
-            }
-            set {
-                if ((this.EndDateField.Equals(value) != true)) {
-                    this.EndDateField = value;
-                    this.RaisePropertyChanged("EndDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int JobHistoryID {
-            get {
-                return this.JobHistoryIDField;
-            }
-            set {
-                if ((this.JobHistoryIDField.Equals(value) != true)) {
-                    this.JobHistoryIDField = value;
-                    this.RaisePropertyChanged("JobHistoryID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string JobTitle {
-            get {
-                return this.JobTitleField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.JobTitleField, value) != true)) {
-                    this.JobTitleField = value;
-                    this.RaisePropertyChanged("JobTitle");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime ModifiedDate {
-            get {
-                return this.ModifiedDateField;
-            }
-            set {
-                if ((this.ModifiedDateField.Equals(value) != true)) {
-                    this.ModifiedDateField = value;
-                    this.RaisePropertyChanged("ModifiedDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> StartDate {
-            get {
-                return this.StartDateField;
-            }
-            set {
-                if ((this.StartDateField.Equals(value) != true)) {
-                    this.StartDateField = value;
-                    this.RaisePropertyChanged("StartDate");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Faculty", Namespace="http://schemas.datacontract.org/2004/07/AlumniWCF.DBML")]
-    [System.SerializableAttribute()]
-    public partial class Faculty : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int FacultyIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FacultyNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AlumniManagement.AlumniService.Major[] MajorsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime ModifiedDateField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int FacultyID {
-            get {
-                return this.FacultyIDField;
-            }
-            set {
-                if ((this.FacultyIDField.Equals(value) != true)) {
-                    this.FacultyIDField = value;
-                    this.RaisePropertyChanged("FacultyID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FacultyName {
-            get {
-                return this.FacultyNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FacultyNameField, value) != true)) {
-                    this.FacultyNameField = value;
-                    this.RaisePropertyChanged("FacultyName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public AlumniManagement.AlumniService.Major[] Majors {
+        public System.Web.Mvc.SelectListItem[] Majors {
             get {
                 return this.MajorsField;
             }
@@ -1314,6 +387,32 @@ namespace AlumniManagement.AlumniService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MiddleName {
+            get {
+                return this.MiddleNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MiddleNameField, value) != true)) {
+                    this.MiddleNameField = value;
+                    this.RaisePropertyChanged("MiddleName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MobileNumber {
+            get {
+                return this.MobileNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MobileNumberField, value) != true)) {
+                    this.MobileNumberField = value;
+                    this.RaisePropertyChanged("MobileNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime ModifiedDate {
             get {
                 return this.ModifiedDateField;
@@ -1322,6 +421,45 @@ namespace AlumniManagement.AlumniService {
                 if ((this.ModifiedDateField.Equals(value) != true)) {
                     this.ModifiedDateField = value;
                     this.RaisePropertyChanged("ModifiedDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StateID {
+            get {
+                return this.StateIDField;
+            }
+            set {
+                if ((this.StateIDField.Equals(value) != true)) {
+                    this.StateIDField = value;
+                    this.RaisePropertyChanged("StateID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StateName {
+            get {
+                return this.StateNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StateNameField, value) != true)) {
+                    this.StateNameField = value;
+                    this.RaisePropertyChanged("StateName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Web.Mvc.SelectListItem[] States {
+            get {
+                return this.StatesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StatesField, value) != true)) {
+                    this.StatesField = value;
+                    this.RaisePropertyChanged("States");
                 }
             }
         }

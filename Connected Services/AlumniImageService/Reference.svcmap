@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="bd98d06d-c9fa-45c9-8f60-e945be129cdc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:50563/Services/AlumniImageService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AlumniImageService.xsd" MetadataType="Schema" ID="ebb3af16-097e-48b4-b290-91fab2dea5fa" SourceId="1" SourceUrl="http://localhost:50563/Services/AlumniImageService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AlumniImageService1.xsd" MetadataType="Schema" ID="3cf59b2b-157b-468f-b739-d3e925dff005" SourceId="1" SourceUrl="http://localhost:50563/Services/AlumniImageService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AlumniImageService.disco" MetadataType="Disco" ID="be2fafa4-67ab-47d9-a346-5d948b54242e" SourceId="1" SourceUrl="http://localhost:50563/Services/AlumniImageService.svc?disco" />
+    <MetadataFile FileName="AlumniImageService.wsdl" MetadataType="Wsdl" ID="9cc505f8-fa77-4731-991c-d029dd37d9d6" SourceId="1" SourceUrl="http://localhost:50563/Services/AlumniImageService.svc?wsdl" />
+    <MetadataFile FileName="AlumniImageService2.xsd" MetadataType="Schema" ID="86ee5d0e-513c-42c9-b715-4adbbcd32f4f" SourceId="1" SourceUrl="http://localhost:50563/Services/AlumniImageService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

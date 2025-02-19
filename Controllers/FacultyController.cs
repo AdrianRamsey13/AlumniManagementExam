@@ -7,6 +7,7 @@ using AlumniManagement.Models.Interfaces;
 using AlumniManagement.Models.DTO;
 using AlumniManagement.Models.Repositories;
 using System.ServiceModel.Channels;
+using WebGrease.Css.Ast.Selectors;
 
 namespace AlumniManagement.Controllers
 {
@@ -34,7 +35,19 @@ namespace AlumniManagement.Controllers
         public JsonResult GetFaculties()
         {
             var faculties = _facultyRepository.GetFaculties();
-           return Json(new {data = faculties }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = faculties }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetFaculty(int facultyID)
+        {
+            var faculty = _facultyRepository.GetFacultyByID(facultyID);
+
+            if (faculty == null)
+            {
+                return Json(new { success = false, errorMsg = "Faculty not found." }, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(faculty, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Faculty/Create
@@ -55,28 +68,35 @@ namespace AlumniManagement.Controllers
                     TempData["SuccessMessage"] = "Faculty added successfully";
                 }
 
-                return RedirectToAction("Index");
+                return Json(new
+                {
+                    success = true
+                });
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "Unable to save due to " + ex.Message);
-                return View();
+                return Json(new
+                {
+                    error = true,
+                    errorMsg = "Error creating Faculty" + ex.Message
+                });
             }
         }
 
         // GET: Faculty/Edit/5
-        public ActionResult Edit(int id)
-        {
-            var existingFaculty = _facultyRepository.GetFacultyByID(id);
+        //public ActionResult Edit(int id)
+        //{
+        //    var existingFaculty = _facultyRepository.GetFacultyByID(id);
 
-            if (existingFaculty == null)
-            {
-                TempData["ErrorMessage"] = "Faculty not found";
-                return RedirectToAction("Index");
-            }
+        //    if (existingFaculty == null)
+        //    {
+        //        TempData["ErrorMessage"] = "Faculty not found";
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(existingFaculty);
-        }
+        //    return View(existingFaculty);
+        //}
 
         // POST: Faculty/Edit/5
         [HttpPost]
@@ -97,12 +117,19 @@ namespace AlumniManagement.Controllers
                     TempData["SuccessMessage"] = "Faculty updated successfully";
                 }
 
-                return RedirectToAction("Index");
+                return Json(new
+                {
+                    success = true
+                });
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "Unable to save due to " + ex.Message);
-                return View();
+                return Json(new
+                {
+                    error = true,
+                    errorMsg = "Error updating Faculty" + ex.Message
+                });
             }
         }
 
@@ -132,6 +159,38 @@ namespace AlumniManagement.Controllers
                 {
                     success = false,
                     Message = "Unable to delete due to " + ex.Message
+                });
+            }
+        }
+
+        public ActionResult DeleteSelected(int[] ids)
+        {
+            try
+            {
+                if (ids != null && ids.Length > 0)
+                {
+                    foreach (var facultyId in ids)
+                    {
+                        _facultyRepository.DeleteFaculty(facultyId);
+                    }
+                    return Json(new
+                    {
+                        success = true,
+                        message = "Faculty Deleted Successfully"
+                    });
+                }
+                return Json(new
+                {
+                    success = false,
+                    message = "Please select a faculty to delete"
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = "Unable to delete due to " + ex.Message
                 });
             }
         }

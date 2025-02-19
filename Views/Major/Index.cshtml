@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AlumniManagement.Models.DTO.MajorDTO>
+﻿@model AlumniManagement.Models.DTO.MajorDTO
 
 @{
     ViewBag.Title = "Major Index";
@@ -31,14 +31,23 @@
     </style>
 }
 
-<h2>Majors</h2>
-<p>
+<h2>Major Management</h2>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    @*<h2 class="text-primary">Faculty List</h2>*@
     @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
-</p>
+    <button id="createButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+        Add New Major Modal
+    </button>
+</div>
+
+<button id="deleteSelected" class="btn btn-danger">Delete Selected</button>
+
 <div class="table-container">
     <table class="table table-striped table-bordered" id="majorData">
         <thead>
             <tr>
+                <th><input type="checkbox" id="selectAll"/></th>
                 <th>Actions</th>
                 <th>No.</th>
                 <th>Major Name</th>
@@ -48,6 +57,117 @@
             </tr>
         </thead>
     </table>
+
+    @*Create Modal*@
+    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createModalLabel">Create New Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form Starts Here -->
+                    @using (Html.BeginForm("Create", "Major", FormMethod.Post, new { id = "createForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        //Template location
+                    <div class="form-horizontal">
+                        <h4>Major Information</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MajorName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.MajorName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MajorName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FacultyID, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.FacultyID, (SelectList)ViewBag.FacultyLists, "Select Faculty",
+                            new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.FacultyID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = "4" })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*Edit Modal*@
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Room</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("Edit", "Major", FormMethod.Post, new { id = "editForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        //Template Edit
+                    <div class="form-horizontal">
+                        <h4>Edit Major</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.MajorID)
+
+                        <div class="form-group">
+                            Name
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.MajorName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MajorName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            Faculty
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.FacultyID, (SelectList)ViewBag.FacultyLists, "Select Faculty", new { @class = "form-control"})
+                                @Html.ValidationMessageFor(model => model.FacultyID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 @section scripts {
@@ -68,9 +188,16 @@
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            var editLink = '@Url.Action("Edit", "Major", new { id = "PLACEHOLDER"})'.replace("PLACEHOLDER", row.MajorID);
-                            return '<div class="btn-group">' +
-                                '<a href="' + editLink + '" class="btn btn-primary" style="margin-right: 5px;">Edit</a>' +
+                            return '<input type="checkbox" class="selectCheckbox" data-id="' + row.MajorID + '"/>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        "render": function (data, type, row) {
+                            //var editLink = '@Url.Action("Edit", "Major", new { id = "PLACEHOLDER"})'.replace("PLACEHOLDER", row.MajorID);
+                          return '<div class="btn-group">' +
+                                '<a href="javascript:void(0);" class="btn btn-primary" data-id="' + row.MajorID + '" id="editButton" style="margin-right: 5px;">' +
+                                '<i class="fas fa-edit"></i></a>' +
                                 '<button class="btn btn-danger deleteButton" data-id="' + row.MajorID + '">Delete</button>' +
                                 '</div>';
                         }
@@ -137,6 +264,213 @@
                             Swal.fire("Error!", "Could not delete the item.", "error");
                         }
                     });
+                }
+            });
+        });
+
+        // unbind the default search event
+        var searchInput = $('#majorData_filter input');
+        searchInput.unbind();
+        let searchTimeout;
+        searchInput.on('keyup', function () {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                var value = $(this).val();
+                if (value.length >= 3 || value.length === 0) {
+                    table.search(value).draw();
+                }
+            }, 500); // Add debounce to prevent frequent filtering
+        });
+
+        //Delete single item
+        $(document).on('click', '.deleteButton', function () {
+            const itemId = $(this).data('id');
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this item!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/Major/Delete',
+                        type: 'POST',
+                        data: { id: itemId },
+                        success: function (response) {
+                            if (response.success) {
+                                Swal.fire("Deleted!", response.message, "success").then(() => {
+                                    table.ajax.reload();
+                                });
+                            } else {
+                                Swal.fire("Error!", response.message, "error");
+                            }
+                        },
+                        error: function () {
+                            Swal.fire("Error!", "Unable to delete the item. Please try again.", "error");
+                        }
+                    });
+                }
+            });
+        });
+
+        // Select all checkboxes
+        $('#selectAll').on('click', function () {
+            var rows = table.rows({ 'search': 'applied' }).nodes();
+            $('input[type="checkbox"]', rows).prop('checked', this.checked);
+        });
+
+        // Delete selected rows
+        $('#deleteSelected').on('click', function () {
+            var selectedIds = $('.selectCheckbox:checked').map(function () {
+                return $(this).data('id');
+            }).get();
+
+            if (selectedIds.length > 0) {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover these items!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Yes, delete them!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '/Major/DeleteSelected',
+                            type: 'POST',
+                            data: { ids: selectedIds },
+                            traditional: true,
+                            success: function (response) {
+                                if (response.success) {
+                                    Swal.fire("Deleted!", response.message, "success").then(() => {
+                                        table.ajax.reload();
+                                    });
+                                } else {
+                                    Swal.fire("Error!", response.message, "error");
+                                }
+                            },
+                            error: function () {
+                                Swal.fire("Error!", "Unable to delete the items. Please try again.", "error");
+                            }
+                        });
+                    }
+                });
+            } else {
+                Swal.fire("No items selected", "Please select items to delete.", "info");
+            }
+        });
+
+        //Submit Create Major
+        $(document).ready(function () {
+            $('#createForm').submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr('action'), // Form action URL
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            $('#createModal').modal('hide'); // Close modal
+                            $('#createForm')[0].reset(); // Reset form fields
+                            $('#majorData').DataTable().ajax.reload(); // Reload DataTable
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: "Major created succesfully",
+                                timer: 5000,
+                                timerProgressBar: true,
+                                showConfirmButton: false
+                            });
+
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: response.errorMsg,
+                                showConfirmButton: true // Show OK button
+                            });
+
+                        }
+                    },
+                    error: function (xhr) {
+                        console.error(xhr.responseText);
+                        alert('An error occurred while saving.');
+                    }
+                });
+            });
+        });
+
+        //Edit form Js
+        $(document).on('click', '#editButton', function () {
+            var majorID = $(this).data('id'); // Get the ProductCategoryID from the button's data-id attribute
+
+            // Make an AJAX request to get the data for the selected ProductCategory
+            $.ajax({
+                url: '/Major/GetMajor/',// URL to fetch data for the specific category
+                type: 'GET',
+                data: { majorID: majorID },
+                success: function (response) {
+                    // Populate the form fields with the data returned from the server
+                    $('#editForm #MajorID').val(response.MajorID); // Assuming you have a hidden field for ID
+                    $('#editForm #MajorName').val(response.MajorName);
+                    $('#editForm #FacultyID').val(response.FacultyID);
+                    //var facultyDropdown = $("editFacultyID");
+                    //facultyDropdown.empty();
+                    //$.each(response.facultyLists, function (index, item) {
+                    //    var option = $("<option/>").val(item.Value).text(item.Text);
+                    //    if (item.Value == response.major.FacultyID) {
+                    //        option.attr("selected", "selected");
+                    //    }
+                    //    facultyDropdown.append(option);
+                    //});
+                    $('#editForm #Description').val(response.Description);
+
+                    // Show the Edit Modal
+                    $('#editModal').modal('show');
+                },
+                error: function (xhr) {
+                    console.error(xhr.responseText);
+                    alert('An error occurred while fetching data.');
+                }
+            });
+        });
+
+        $('#editForm').submit(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: $(this).attr('action'), // Form action URL
+                type: 'POST',
+                data: $(this).serialize(), // Serialize the form data
+                success: function (response) {
+                    if (response.success) {
+                        $('#editModal').modal('hide'); // Close the modal
+                        $('#majorData').DataTable().ajax.reload(); // Reload the DataTable
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: "Edit Major Successful",
+                            timer: 5000,
+                            timerProgressBar: true,
+                            showConfirmButton: false
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: response.errorMsg,
+                            showConfirmButton: true // Show OK button
+                        });
+                    }
+                },
+                error: function (xhr) {
+                    console.error(xhr.responseText);
+                    alert('An error occurred while saving.');
                 }
             });
         });

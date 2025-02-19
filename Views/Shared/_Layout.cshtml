@@ -21,10 +21,9 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Faculty", "Index", "Faculty", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Major", "Index", "Major", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Job History", "Index", "JobHistory", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Alumni", "Index", "Alumni", new { area = "" }, new { @class = "nav-link" })</li>
                     @*<li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
+                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
                 </ul>
             </div>
         </div>
@@ -39,6 +38,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @RenderSection("scripts", required: false)
     <script>
     $(document).ready(function () {
@@ -51,14 +51,7 @@
                 text: succesMessage
 
             });
-        } else (errorMessage)
-        {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text : failedMessage
-            })
-        }
+        } 
     });
     </script>
 </body>

@@ -34,5 +34,6 @@ namespace AlumniManagement.Models.Interfaces
 
         
         int GetStateIdByName(string stateName);
+
     }
 }

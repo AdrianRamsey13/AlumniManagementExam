@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AlumniManagement.Models.DTO.FacultyDTO>
+﻿@model AlumniManagement.Models.DTO.FacultyDTO
 
 @{
     ViewBag.Title = "Faculty Index";
@@ -42,20 +42,29 @@
         .btn-group .btn {
             margin-right: 5px;
         }
+
     </style>
 }
 
+<h2>Faculty Management</h2>
+
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="text-primary">Faculty List</h2>
+        @*<h2 class="text-primary">Faculty List</h2>*@
         @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+        <button id="createButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+            Add New Faculty Modal
+        </button>
     </div>
+
+    <button id="deleteSelected" class="btn btn-danger">Delete Selected</button>
 
     <div class="container-fluid">
         <div class="table-container">
             <table class="table table-striped table-bordered" id="facultyData">
                 <thead>
                     <tr>
+                        <th><input type="checkbox" id="selectAll" /></th>
                         <th>Actions</th>
                         <th>No.</th>
                         <th>Name</th>
@@ -64,6 +73,103 @@
                     </tr>
                 </thead>
             </table>
+
+            @*Create Modal*@
+            <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="createModalLabel">Create New Item</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Form Starts Here -->
+                            @using (Html.BeginForm("Create", "Faculty", FormMethod.Post, new { id = "createForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                //Template location
+                                <div class="form-horizontal">
+                                    <h4>FacultyDTO</h4>
+                                    <hr />
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.FacultyName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.FacultyName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.FacultyName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Create</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*-----------*@
+
+            @*Edit Modal*@
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">Edit Room</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            @using (Html.BeginForm("Edit", "Faculty", FormMethod.Post, new { id = "editForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                //Template Edit
+                                <div class="form-horizontal">
+                                    <h4>FacultyDTO</h4>
+                                    <hr />
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.HiddenFor(model => model.FacultyID)
+
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.FacultyName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.FacultyName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.FacultyName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Save" class="btn btn-default" />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*---------------*@
         </div>
     </div>
 </div>
@@ -76,48 +182,72 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script>
         $(document).ready(function () {
-            var table = $('#facultyData').DataTable({
-                "ajax": { "url": "/Faculty/GetFaculties", "type": "GET", "datatype": "json" },
-                "columns": [
-                    {
-                        "data": null,
-                        "render": function (data, type, row) {
-                            var editLink = '@Url.Action("Edit", "Faculty", new { id = "PLACEHOLDER"})'.replace("PLACEHOLDER", row.FacultyID);
-                            return '<div class="btn-group">' +
-                                '<a href="' + editLink + '" class="btn btn-primary" style="margin-right: 5px;">Edit</a>' +
-                                '<button class="btn btn-danger deleteButton" data-id="' + row.FacultyID + '">Delete</button>' +
-                                '</div>';
-                        }
-                    },
-                    {
-                        "data": null,
-                        "render": function (data, type, row, meta) {
-                            return meta.row + 1;
-                        }
-                    },
-                    { "data": "FacultyName" },
-                    { "data": "Description" },
-                    {
-                        "data": "ModifiedDate",
-                        "render": function (data) {
-                            return moment(data).format('DD-MMM-YYYY HH:mm:ss');
-                        }
-                    },
-                ],
-                "dom": '<"top"f>rt<"bottom"lpi><"clear">',
-                "pagingType": "full_numbers",
-                "scrollY": "400px",
-                "scrollX": true,
-                "scrollCollapse": true,
-                "fixedHeader": true,
-                "pageLength": 10,
-                "lengthMenu": [10, 25, 50, 100],
-                "language": {
-                    "paginate": { "previous": "Previous", "next": "Next", "first": "<<", "last": ">>" }
+            var table = $('#facultyData').DataTable({ //load data
+            "ajax": {
+                "url": "/Faculty/GetFaculties",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return '<input type="checkbox" class="selectCheckbox" data-id="' + row.FacultyID + '"/>';
+                    }
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        var editLink = '@Url.Action("Edit", "Faculty")' + '?id=' + row.FacultyID;
+                        return '<div class="btn-group">' +
+                            '<button class="btn btn-primary editButton" data-id="' + row.FacultyID + '">Edit</button>' + // Ganti anchor dengan button
+                            '<button class="btn btn-danger deleteButton" data-id="' + row.FacultyID + '">Delete</button>' +
+                            '</div>';
+                    }
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row, meta) {
+                        return meta.row + 1;
+                    }
+                },
+                { "data": "FacultyName" },
+                { "data": "Description" },
+                {
+                    "data": "ModifiedDate",
+                    "render": function (data) {
+                        return moment(data).format('DD-MMM-YYYY HH:mm:ss');
+                    }
                 }
-            });
+            ],
+            "dom": '<"top"f>rt<"bottom"lpi><"clear">',
+            "pagingType": "full_numbers",
+            "scrollY": "400px",
+            "scrollX": true,
+            "scrollCollapse": true,
+            "fixedHeader": true,
+            "pageLength": 10,
+            "lengthMenu": [10, 25, 50, 100],
+            "language": {
+                "paginate": { "previous": "Previous", "next": "Next", "first": "<<", "last": ">>" }
+            }
         });
 
+        // unbind the default search event
+        var searchInput = $('#facultyData_filter input');
+        searchInput.unbind();
+        let searchTimeout;
+        searchInput.on('keyup', function () {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                var value = $(this).val();
+                if (value.length >= 3 || value.length === 0) {
+                    table.search(value).draw();
+                }
+            }, 500); // Add debounce to prevent frequent filtering
+        });
+
+        // Delete single item
         $(document).on('click', '.deleteButton', function () {
             const itemId = $(this).data('id');
             Swal.fire({
@@ -137,7 +267,7 @@
                         success: function (response) {
                             if (response.success) {
                                 Swal.fire("Deleted!", response.message, "success").then(() => {
-                                    $("#facultyData").DataTable().ajax.reload();
+                                    table.ajax.reload();
                                 });
                             } else {
                                 Swal.fire("Error!", response.message, "error");
@@ -150,5 +280,154 @@
                 }
             });
         });
+
+        // Select all checkboxes
+        $('#selectAll').on('click', function () {
+            var rows = table.rows({ 'search': 'applied' }).nodes();
+            $('input[type="checkbox"]', rows).prop('checked', this.checked);
+        });
+
+        // Delete selected rows
+        $('#deleteSelected').on('click', function () {
+            var selectedIds = $('.selectCheckbox:checked').map(function () {
+                return $(this).data('id');
+            }).get();
+
+            if (selectedIds.length > 0) {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover these items!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Yes, delete them!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '/Faculty/DeleteSelected',
+                            type: 'POST',
+                            data: { ids: selectedIds },
+                            traditional: true,
+                            success: function (response) {
+                                if (response.success) {
+                                    Swal.fire("Deleted!", response.message, "success").then(() => {
+                                        table.ajax.reload();
+                                    });
+                                } else {
+                                    Swal.fire("Error!", response.message, "error");
+                                }
+                            },
+                            error: function () {
+                                Swal.fire("Error!", "Unable to delete the items. Please try again.", "error");
+                            }
+                        });
+                    }
+                });
+            } else {
+                Swal.fire("No items selected", "Please select items to delete.", "info");
+            }
+        });
+    });
+
+        //Submit Create
+        $(document).ready(function () {
+            $('#createForm').submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr('action'), // Form action URL
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            $('#createModal').modal('hide'); // Close modal
+                            $('#createForm')[0].reset(); // Reset form fields
+                            $('#facultyData').DataTable().ajax.reload(); // Reload DataTable
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: "Faculty created succesfully",
+                                timer: 5000,
+                                timerProgressBar: true,
+                                showConfirmButton: false
+                            });
+
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: response.errorMsg,
+                                showConfirmButton: true // Show OK button
+                            });
+
+                        }
+                    },
+                    error: function (xhr) {
+                        console.error(xhr.responseText);
+                        alert('An error occurred while saving.');
+                    }
+                });
+            });
+
+            //Edit form Js
+            $(document).on('click', '.editButton', function () { // Menggunakan class editButton
+                var facultyID = $(this).data('id');
+
+                $.ajax({
+                    url: '/Faculty/GetFaculty/',
+                    type: 'GET',
+                    data: {facultyID: facultyID},
+                    success: function (response) {
+                        $('#editForm #FacultyID').val(response.FacultyID);
+                        $('#editForm #FacultyName').val(response.FacultyName);
+                        $('#editForm #Description').val(response.Description);
+                        $('#editModal').modal('show');
+                    },
+                    error: function (xhr) {
+                        Swal.fire('Error!', 'Failed to load faculty data', 'error');
+                    }
+                });
+            });
+
+            // Edit Form Submission
+            $('#editForm').submit(function (e) {
+                e.preventDefault();
+                
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            $('#editModal').modal('hide');
+                            $('#facultyData').DataTable().ajax.reload();
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: "Edit Faculty Successful",
+                                timer: 5000,
+                                timerProgressBar: true,
+                                showConfirmButton: false
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: response.errorMsg,
+                                showConfirmButton: true // Show OK button
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire('Error!', 'An error occurrefdsfdsd', 'error');
+                    }
+                });
+            });
+        });
+
+        
+
     </script>
+
 }

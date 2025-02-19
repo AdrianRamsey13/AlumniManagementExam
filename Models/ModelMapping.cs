@@ -32,7 +32,8 @@ namespace AlumniManagement.Models
             CreateMap<DTO.FacultyDTO, FacultyService.FacultyDTO>().ReverseMap();
             CreateMap<DTO.MajorDTO, MajorService.MajorDTO>().ReverseMap();
             CreateMap<DTO.JobHistoryDTO, JobHistoryService.JobHistoryDTO>().ReverseMap();
-
+            CreateMap<DTO.StateDTO, StateService.StateDTO>().ReverseMap();
+            CreateMap<DTO.DistrictDTO, DistrictService.DistrictDTO>().ReverseMap();
         }
 
     }

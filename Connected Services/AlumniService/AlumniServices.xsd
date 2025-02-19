@@ -1,109 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AlumniWCF.DBML" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AlumniWCF.DBML" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="ArrayOfDistrict">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System.Web.Mvc" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System.Web.Mvc" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfSelectListItem">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="District" nillable="true" type="tns:District" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SelectListItem" nillable="true" type="tns:SelectListItem" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfDistrict" nillable="true" type="tns:ArrayOfDistrict" />
-  <xs:complexType name="District">
+  <xs:element name="ArrayOfSelectListItem" nillable="true" type="tns:ArrayOfSelectListItem" />
+  <xs:complexType name="SelectListItem">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Alumnis" nillable="true" type="tns:ArrayOfAlumni" />
-      <xs:element minOccurs="0" name="DistrictID" type="xs:int" />
-      <xs:element minOccurs="0" name="DistrictName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="State" nillable="true" type="tns:State" />
-      <xs:element minOccurs="0" name="StateID" type="xs:int" />
+      <xs:element minOccurs="0" name="Disabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Group" nillable="true" type="tns:SelectListGroup" />
+      <xs:element minOccurs="0" name="Selected" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="District" nillable="true" type="tns:District" />
-  <xs:complexType name="ArrayOfAlumni">
+  <xs:element name="SelectListItem" nillable="true" type="tns:SelectListItem" />
+  <xs:complexType name="SelectListGroup">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Alumni" nillable="true" type="tns:Alumni" />
+      <xs:element minOccurs="0" name="Disabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfAlumni" nillable="true" type="tns:ArrayOfAlumni" />
-  <xs:complexType name="Alumni">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="AlumniID" type="xs:int" />
-      <xs:element minOccurs="0" name="DateOfBirth" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Degree" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="District" nillable="true" type="tns:District" />
-      <xs:element minOccurs="0" name="DistrictID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="GraduationYear" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="JobHistories" nillable="true" type="tns:ArrayOfJobHistory" />
-      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="LinkedInProfile" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Major" nillable="true" type="tns:Major" />
-      <xs:element minOccurs="0" name="MajorID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="MobileNumber" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Alumni" nillable="true" type="tns:Alumni" />
-  <xs:complexType name="ArrayOfJobHistory">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="JobHistory" nillable="true" type="tns:JobHistory" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfJobHistory" nillable="true" type="tns:ArrayOfJobHistory" />
-  <xs:complexType name="JobHistory">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Alumni" nillable="true" type="tns:Alumni" />
-      <xs:element minOccurs="0" name="AlumniID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="Company" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="JobHistoryID" type="xs:int" />
-      <xs:element minOccurs="0" name="JobTitle" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="JobHistory" nillable="true" type="tns:JobHistory" />
-  <xs:complexType name="Major">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Alumnis" nillable="true" type="tns:ArrayOfAlumni" />
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Faculty" nillable="true" type="tns:Faculty" />
-      <xs:element minOccurs="0" name="FacultyID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="MajorID" type="xs:int" />
-      <xs:element minOccurs="0" name="MajorName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Major" nillable="true" type="tns:Major" />
-  <xs:complexType name="Faculty">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FacultyID" type="xs:int" />
-      <xs:element minOccurs="0" name="FacultyName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Majors" nillable="true" type="tns:ArrayOfMajor" />
-      <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Faculty" nillable="true" type="tns:Faculty" />
-  <xs:complexType name="ArrayOfMajor">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Major" nillable="true" type="tns:Major" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfMajor" nillable="true" type="tns:ArrayOfMajor" />
-  <xs:complexType name="State">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Districts" nillable="true" type="tns:ArrayOfDistrict" />
-      <xs:element minOccurs="0" name="StateID" type="xs:int" />
-      <xs:element minOccurs="0" name="StateName" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="State" nillable="true" type="tns:State" />
-  <xs:complexType name="ArrayOfState">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="State" nillable="true" type="tns:State" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfState" nillable="true" type="tns:ArrayOfState" />
+  <xs:element name="SelectListGroup" nillable="true" type="tns:SelectListGroup" />
 </xs:schema>

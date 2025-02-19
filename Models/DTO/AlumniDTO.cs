@@ -42,11 +42,13 @@ namespace AlumniManagement.Models.DTO
         [DisplayName("District")]
         public System.Nullable<int> DistrictID { get; set; }
 
-        [StringLength(50)]
+        public string DistrictName { get; set; }
+
+        
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         [DisplayName("Date of Birth")]
-        public System.Nullable<System.DateTime> DateOfBirth { get; set; }
+        public System.DateTime DateOfBirth { get; set; }
 
         [DisplayName("Graduation Year")]
         public System.Nullable<int> GraduationYear { get; set; }
@@ -85,9 +87,15 @@ namespace AlumniManagement.Models.DTO
         [DisplayName("State")]
         public int StateID { get; set; }
 
+        public IEnumerable<SelectListItem>States { get; set; }
 
-        public IEnumerable<SelectListItem> DistrictDDL { get; set; }
+        public IEnumerable<SelectListItem> Districts { get; set; }
 
-        public IEnumerable<SelectListItem> MajorDDl { get; set; }
+        public IEnumerable<SelectListItem> Faculties { get; set;}
+
+        public IEnumerable<SelectListItem> Majors { get; set; }
+
+        public IEnumerable<SelectListItem> Degrees { get; set; }
+
     }
 }

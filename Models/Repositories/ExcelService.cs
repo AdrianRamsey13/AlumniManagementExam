@@ -119,19 +119,19 @@ namespace AlumniManagement.Models.Repositories
                 worksheet.Cells[i + 1, 12].PutValue(data.ElementAt(i).MajorName);
                 worksheet.Cells[i + 1, 13].PutValue(data.ElementAt(i).LinkedInProfile);
 
-                maxColumnWidths[1] = Math.Max(maxColumnWidths[1], data.ElementAt(i).FirstName.Length);
-                maxColumnWidths[2] = Math.Max(maxColumnWidths[2], data.ElementAt(i).MiddleName.Length);
-                maxColumnWidths[3] = Math.Max(maxColumnWidths[3], data.ElementAt(i).LastName.Length);
-                maxColumnWidths[4] = Math.Max(maxColumnWidths[4], data.ElementAt(i).Email.Length);
-                maxColumnWidths[5] = Math.Max(maxColumnWidths[5], data.ElementAt(i).MobileNumber.Length);
-                maxColumnWidths[6] = Math.Max(maxColumnWidths[6], data.ElementAt(i).Address.Length);
-                maxColumnWidths[7] = Math.Max(maxColumnWidths[7], data.ElementAt(i).StateName.Length);
-                maxColumnWidths[8] = Math.Max(maxColumnWidths[8], data.ElementAt(i).DistrictName.Length);
+                maxColumnWidths[1] = Math.Max(maxColumnWidths[1], data.ElementAt(i)?.FirstName?.Length ?? 0);
+                maxColumnWidths[2] = Math.Max(maxColumnWidths[2], data.ElementAt(i)?.MiddleName?.Length ?? 0);
+                maxColumnWidths[3] = Math.Max(maxColumnWidths[3], data.ElementAt(i)?.LastName?.Length ?? 0);
+                maxColumnWidths[4] = Math.Max(maxColumnWidths[4], data.ElementAt(i)?.Email?.Length ?? 0);
+                maxColumnWidths[5] = Math.Max(maxColumnWidths[5], data.ElementAt(i)?.MobileNumber?.Length ?? 0);
+                maxColumnWidths[6] = Math.Max(maxColumnWidths[6], data.ElementAt(i)?.Address?.Length ?? 0);
+                maxColumnWidths[7] = Math.Max(maxColumnWidths[7], data.ElementAt(i)?.StateName?.Length ?? 0);
+                maxColumnWidths[8] = Math.Max(maxColumnWidths[8], data.ElementAt(i)?.DistrictName?.Length ?? 0);
                 maxColumnWidths[9] = Math.Max(maxColumnWidths[9], data.ElementAt(i).GraduationYear.ToString().Length);
-                maxColumnWidths[10] = Math.Max(maxColumnWidths[10], data.ElementAt(i).Degree.Length);
-                maxColumnWidths[11] = Math.Max(maxColumnWidths[11], data.ElementAt(i).FacultyName.Length);
-                maxColumnWidths[12] = Math.Max(maxColumnWidths[12], data.ElementAt(i).MajorName.Length);
-                maxColumnWidths[13] = Math.Max(maxColumnWidths[13], data.ElementAt(i).LinkedInProfile.Length);
+                maxColumnWidths[10] = Math.Max(maxColumnWidths[10], data.ElementAt(i)?.Degree?.Length ?? 0);
+                maxColumnWidths[11] = Math.Max(maxColumnWidths[11], data.ElementAt(i)?.FacultyName?.Length ?? 0);
+                maxColumnWidths[12] = Math.Max(maxColumnWidths[12], data.ElementAt(i)?.MajorName?.Length ?? 0);
+                maxColumnWidths[13] = Math.Max(maxColumnWidths[13], data.ElementAt(i)?.LinkedInProfile?.Length ?? 0);
             }
 
             for (int col = 1; col < maxColumnWidths.Length; col++)
